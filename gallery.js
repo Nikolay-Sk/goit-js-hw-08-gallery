@@ -37,22 +37,9 @@ const closeImg = (event) => {
   lightboxImage.src = "";
 };
 
-const handlingGallery = (event) => {
-  if (
-    event.target.classList.contains("gallery__image") &&
-    !lightBox.classList.contains("is-open")
-  ) {
-    openImg(event);
-  }
-
-  if (
-    event.code === "Escape" ||
-    event.target.classList.contains("lightbox__content") ||
-    (event.target === closeLightbox && lightBox.classList.contains("is-open"))
-  ) {
-    closeImg(event);
-  }
+const handlingGalleryClose = (event) => {
+  if (event.target === closeLightbox) closeImg(event);
 };
 
-document.addEventListener("click", handlingGallery);
-document.addEventListener("keydown", handlingGallery);
+gallery.addEventListener("click", openImg);
+lightBox.addEventListener("click", handlingGalleryClose);
